@@ -1,0 +1,46 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "迷宫",
+    "description": "迷宫",
+    "min_engine_version": [
+      1,
+      21,
+      0
+    ],
+    "uuid": "9a39495e-2dc5-436b-9d50-6f09552582c2",
+    "version": [
+      1,
+      0,
+      0
+    ]
+  },
+  "modules": [
+    {
+      "type": "data",
+      "uuid": "9af0c589-3c8a-422a-9ec3-716aaabcbc72",
+      "version": [
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "type": "script",
+      "language": "javascript",
+      "uuid": "0a8f9418-7f80-4790-b2d8-db1dfe7c92c1",
+      "entry": "scripts/main.js",
+      "version": [
+        1,
+        0,
+        0
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "module_name": "@minecraft/server",
+      "version": "1.17.0-beta"
+    }
+  ]
+}
