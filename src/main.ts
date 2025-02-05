@@ -1,6 +1,5 @@
 import * as mc from '@minecraft/server';
 
-
 mc.world.afterEvents.chatSend.subscribe((e) => {
   const d = e.sender.dimension;
   const cmd = e.message.trim().split(" ");
@@ -83,7 +82,7 @@ mc.world.afterEvents.chatSend.subscribe((e) => {
       "\u00a7a参数: \u00a7r\n" +
       " • width:  \u00a79number\u00a7f    指宽度, 默认为21\u00a7r" +
       "   - 范围: 2<width<24\n" +
-      " • height: \u00a79number\u00a7f    指宽度, 默认为21\u00a7r" +
+      " • height: \u00a79number\u00a7f    指长度, 默认为21\u00a7r" +
       "   - 范围: 2<height<24\n\n" +
       " • path: \u00a79boolean\u00a7f     指是否启用最短路径, 默认为true\u00a7r" +
       "注: 如果width或height为偶数则返回width或height+1\n"
@@ -103,13 +102,14 @@ mc.world.afterEvents.chatSend.subscribe((e) => {
       }
 
     }
-    if (cmd.length == 4) {
-      if(cmd[3].toLocaleLowerCase()=='true') path=true;
-      else if(cmd[3].toLocaleLowerCase()=='false') path=false;
+    if (cmd.length >= 4) {
+      if (cmd[3].toLocaleLowerCase() == 'true') path = true;
+      else if (cmd[3].toLocaleLowerCase() == 'false') path = false;
       else {
-        e.sender.sendMessage("\u00a7c参数错误\n>> [path:boolean] <<\u00a7r\n"+help)
-      } 
-      
+        e.sender.sendMessage("\u00a7c参数错误\n>> [path:boolean] <<\u00a7r\n" + help)
+        return;
+      }
+
     }
 
     let maze = createMaze(l, w);
@@ -137,7 +137,7 @@ mc.world.afterEvents.chatSend.subscribe((e) => {
       }
     }
     e.sender.tryTeleport({ x: x, y: y + 2, z: z });
-    e.sender.sendMessage(`\u00a77\u00a7o[${e.sender.name}: 成功! 已在(${Math.trunc(x)},${Math.trunc(y)},${Math.trunc(z)})到(${Math.trunc(x + l)},${Math.trunc(y)},${Math.trunc(z + w)})处生成迷宫, ${path?"包含":"不包含"}最短路径]`)
+    e.sender.sendMessage(`\u00a77\u00a7o[${e.sender.name}: 成功! 已在(${Math.trunc(x)},${Math.trunc(y)},${Math.trunc(z)})到(${Math.trunc(x + l)},${Math.trunc(y)},${Math.trunc(z + w)})处生成迷宫, ${path ? "包含" : "不包含"}最短路径]`)
   }
 })
 
